@@ -10,11 +10,9 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
-import java.util.Stack;
 
 public class CalculatorActivity extends AppCompatActivity implements View.OnLongClickListener {
 
-    private int MAX_IN_DIGITS;
     private DecimalFormat formatter;
 
     private Double last;
@@ -32,7 +30,6 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
-        MAX_IN_DIGITS = getResources().getInteger(R.integer.max_in_digits);
         formatter = new DecimalFormat(getResources().getString(R.string.decimal_format), DecimalFormatSymbols.getInstance( Locale.ENGLISH ));
 
         textViewLine = (TextView) findViewById(R.id.textViewLine);
@@ -175,7 +172,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
         // Only allow one decimal point
         if (digit.equals(".") && currText.contains("."))
             return;
-        if (currText.replace(".", "").length() >= MAX_IN_DIGITS)
+        if (currText.replace(".", "").length() >= getResources().getInteger(R.integer.max_in_digits))
             return;
 
         // If it's already just "0", replace, otherwise append

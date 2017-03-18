@@ -15,20 +15,10 @@ import java.util.Stack;
 import static java.security.AccessController.getContext;
 
 /**
- * TODO: document your custom view class.
+ * Basically a TextView with an internal stack
  */
 public class StackView extends AppCompatTextView {
-    private String mExampleString; // TODO: use a default from R.string...
-    private int mExampleColor = Color.RED; // TODO: use a default from R.color...
-    private float mExampleDimension = 0; // TODO: use a default from R.dimen...
-    private Drawable mExampleDrawable;
-
     private DecimalFormat formatter;
-
-    private TextPaint mTextPaint;
-    private float mTextWidth;
-    private float mTextHeight;
-
     private Stack<Double> stack;
 
     /**
@@ -125,6 +115,10 @@ public class StackView extends AppCompatTextView {
         }
     }
 
+    /**
+     * Sets the formatter to use for display
+     * @param format The formatter to use
+     */
     public void setFormatter(DecimalFormat format)
     {
         formatter = format;
