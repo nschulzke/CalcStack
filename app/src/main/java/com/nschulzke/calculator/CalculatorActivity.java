@@ -1,13 +1,12 @@
 package com.nschulzke.calculator;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -15,117 +14,110 @@ import java.util.Stack;
 
 public class CalculatorActivity extends AppCompatActivity implements View.OnLongClickListener {
 
-    private Stack<Double> stack;
+    private int MAX_IN_DIGITS;
+    private DecimalFormat formatter;
+
     private Double last;
     private boolean hasLast = false;
     private TextView textViewStack;
-    private TextView textViewNum;
-    private DecimalFormat formatter = new DecimalFormat("#.#####", DecimalFormatSymbols.getInstance( Locale.ENGLISH ));
+    private TextView textViewLine;
+    private StackView stackView;
 
-    private static final int MAX_IN_DIGITS = 14;
-
+    /**
+     * Sets up the calculator activity
+     * @param savedInstanceState The bundle containing the previously saved state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        stack = new Stack<Double>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
-        textViewStack = (TextView) findViewById(R.id.textViewStack);
-        textViewNum = (TextView) findViewById(R.id.textViewNum);
+        MAX_IN_DIGITS = getResources().getInteger(R.integer.max_in_digits);
+        formatter = new DecimalFormat(getResources().getString(R.string.decimal_format), DecimalFormatSymbols.getInstance( Locale.ENGLISH ));
 
-        ((Button) findViewById(R.id.buttonBack)).setOnLongClickListener(this);
-        ((Button) findViewById(R.id.buttonClear)).setOnLongClickListener(this);
-        ((Button) findViewById(R.id.buttonEnter)).setOnLongClickListener(this);
-        ((TextView) findViewById(R.id.textViewStack)).setOnLongClickListener(this);
+        textViewLine = (TextView) findViewById(R.id.textViewLine);
+        stackView = (StackView) findViewById(R.id.stackView);
+
+        stackView.setFormatter(formatter);
+
+        findViewById(R.id.buttonBack).setOnLongClickListener(this);
+        findViewById(R.id.buttonClear).setOnLongClickListener(this);
+        findViewById(R.id.buttonEnter).setOnLongClickListener(this);
+        findViewById(R.id.stackView).setOnLongClickListener(this);
     }
 
-    protected void clearDigits() {
-        textViewNum.setText("");
+    /**
+     * Clears out the digits on the number entry line
+     */
+    private void clearLine() {
+        textViewLine.setText("");
     }
 
-    protected void updateStack() {
-        String newText = "";
-        for (Double d : stack)
-            newText += "\n" + formatter.format(d);
-        newText = newText.replaceFirst("\\n", "");
-        textViewStack.setText(newText);
-    }
-
-    protected void swapStack()
-    {
-        if (stack.size() > 1)
-        {
-            Double val1 = stack.pop();
-            Double val2 = stack.pop();
-            stack.push(val1);
-            stack.push(val2);
-            updateStack();
-        }
-    }
-
-    protected void overStack()
-    {
-        if (stack.size() > 2)
-        {
-            Double val1 = stack.pop();
-            Double val2 = stack.pop();
-            Double val3 = stack.pop();
-            stack.push(val2);
-            stack.push(val1);
-            stack.push(val3);
-            updateStack();
-        }
-    }
-
-    protected void clearStack()
-    {
-        stack.clear();
-        hasLast = false;
-        updateStack();
-    }
-
+    /**
+     * Handles long presses for views in this activity
+     * @param view The view that received the event
+     * @return True if the event is consumed, false if not
+     */
     public boolean onLongClick(View view) {
         if (view.getId() == R.id.buttonBack)
-            clearDigits();
+            clearLine();
         else if (view.getId() == R.id.buttonClear)
-            clearStack();
+        {
+            stackView.clear();
+            hasLast = false;
+        }
         else if (view.getId() == R.id.buttonEnter)
-            textViewNum.setText(formatter.format(stack.peek()));
-        else if (view.getId() == R.id.textViewStack)
-            overStack();
+            textViewLine.setText(formatter.format(stackView.peek()));
+        else if (view.getId() == R.id.stackView)
+            stackView.over();
         return true;
     }
 
-    public void clearStack(View view)
+    /**
+     * Event handler, pops one item off the stack
+     * @param view The view that received the event
+     */
+    public void pop(View view)
     {
-        stack.pop();
-        updateStack();
+        stackView.pop();
     }
 
-    public void swapStack(View view)
+    /**
+     * Event handler, swaps the top two items on the stack
+     * @param view The view that received the event
+     */
+    public void swap(View view)
     {
-        swapStack();
+        stackView.swap();
     }
 
-    public void eraseOne(View view)
+    /**
+     * Event handler, deletes the last character from textViewLine
+     * @param view The view that received the event
+     */
+    public void backspace(View view)
     {
-        String text = textViewNum.getText().toString();
+        String text = textViewLine.getText().toString();
         if (text.length() > 1)
-            textViewNum.setText(text.substring(0, text.length() - 1));
+            textViewLine.setText(text.substring(0, text.length() - 1));
         else
-            textViewNum.setText("");
+            textViewLine.setText("");
     }
 
+    /**
+     * Event handler, pushes the number in textViewLine to the stack
+     * @param view The view that received the event
+     */
     public void pushNum(View view)
     {
-        String currText = textViewNum.getText().toString();
+        String currText = textViewLine.getText().toString();
 
         Double currDouble;
 
         // Empty string can't be sent
         if (currText.equals("")) {
             if (hasLast)
-                textViewNum.setText(formatter.format(last));
+                textViewLine.setText(formatter.format(last));
             return;
         }
         else if (currText.equals("."))
@@ -136,41 +128,48 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
         last = currDouble;
         hasLast = true;
 
-        stack.push(currDouble);
-        updateStack();
-        clearDigits();
+        stackView.push(currDouble);
+        clearLine();
     }
 
+    /**
+     * Event handler, runs an operation depending on which button is pressed
+     * @param view The view that received the event
+     */
     public void runOp(View view) {
-        if (textViewNum.getText().length() != 0 || stack.size() < 2)
+        if (textViewLine.getText().length() != 0 || stackView.size() < 2)
             pushNum(view);
 
-        if (stack.size() < 2)
+        if (stackView.size() < 2)
             return;
 
-        Double num2 = stack.pop();
-        Double num1 = stack.pop();
+        Double num2 = stackView.pop();
+        Double num1 = stackView.pop();
         switch (view.getId())
         {
             case R.id.buttonAdd:
-                stack.push(num1 + num2);
+                stackView.push(num1 + num2);
                 break;
             case R.id.buttonSub:
-                stack.push(num1 - num2);
+                stackView.push(num1 - num2);
                 break;
             case R.id.buttonMult:
-                stack.push(num1 * num2);
+                stackView.push(num1 * num2);
                 break;
             case R.id.buttonDiv:
-                stack.push(num1 / num2);
+                stackView.push(num1 / num2);
                 break;
         }
-        updateStack();
     }
 
+    /**
+     * Event handler, adds a character to textViewLine
+     * @param view The view that received the event
+     */
+    @SuppressLint("SetTextI18n")
     public void addDigit(View view) {
         Button button = (Button) view;
-        String currText = textViewNum.getText().toString();
+        String currText = textViewLine.getText().toString();
         String digit = button.getText().toString();
 
         // Only allow one decimal point
@@ -181,8 +180,8 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
 
         // If it's already just "0", replace, otherwise append
         if (currText.equals("0") && !digit.equals("."))
-            textViewNum.setText(digit);
+            textViewLine.setText(digit);
         else
-            textViewNum.setText(textViewNum.getText() + digit);
+            textViewLine.setText(textViewLine.getText() + digit);
     }
 }

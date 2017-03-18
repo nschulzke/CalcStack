@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="max_stack_lines">5</integer>
+    <integer name="max_in_digits">14</integer>
+    <string name="decimal_format">#.#####</string>
+</resources>
