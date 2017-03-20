@@ -3,5 +3,7 @@
     <integer name="max_stack_lines">5</integer>
     <integer name="max_in_digits">14</integer>
     <integer name="return_delay">200</integer>
+    <dimen name="button_font_normal">24sp</dimen>
+    <dimen name="button_font_large">36sp</dimen>
     <string name="decimal_format">#.#####</string>
 </resources>

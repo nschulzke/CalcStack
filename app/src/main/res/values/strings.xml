@@ -2,7 +2,7 @@
     <string name="app_name">Calculator</string>
     <string name="button_clear">C</string>
     <string name="button_back">⌫</string>
-    <string name="button_swap">↔</string>
+    <string name="button_swap">⇄</string>
     <string name="button_dot">.</string>
     <string name="button_0">0</string>
     <string name="button_1">1</string>

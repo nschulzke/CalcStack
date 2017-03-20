@@ -91,7 +91,7 @@
                 android:longClickable="false"
                 android:onClick="pop"
                 android:text="@string/button_clear"
-                android:textSize="24sp"
+                android:textSize="@dimen/button_font_normal"
                 app:layout_constraintBottom_toTopOf="@+id/buttonBack"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -108,7 +108,7 @@
                 android:longClickable="false"
                 android:onClick="backspace"
                 android:text="@string/button_back"
-                android:textSize="24sp"
+                android:textSize="@dimen/button_font_normal"
                 app:layout_constraintBottom_toTopOf="@+id/buttonSwap"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/buttonClear" />
@@ -125,7 +125,7 @@
                 android:longClickable="true"
                 android:onClick="switchPanel"
                 android:text="@string/button_swap"
-                android:textSize="24sp"
+                android:textSize="@dimen/button_font_large"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/buttonBack" />
@@ -156,7 +156,7 @@
             android:onClick="constant"
             android:text="@string/button_e"
             android:textAllCaps="false"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/buttonSquare"
             app:layout_constraintRight_toLeftOf="@+id/buttonPi" />
@@ -172,7 +172,7 @@
             android:onClick="constant"
             android:text="@string/button_pi"
             android:textAllCaps="false"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/buttonE"
             app:layout_constraintRight_toLeftOf="@+id/buttonTan" />
@@ -189,7 +189,7 @@
             android:fadeScrollbars="false"
             android:onClick="unaryOp"
             android:text="@string/button_log"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonE"
             app:layout_constraintLeft_toRightOf="@+id/buttonSqrt"
             app:layout_constraintRight_toLeftOf="@+id/button22" />
@@ -203,7 +203,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:elevation="4dp"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonPi"
             app:layout_constraintLeft_toRightOf="@+id/buttonLog"
             app:layout_constraintRight_toLeftOf="@+id/buttonCos" />
@@ -217,7 +217,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:elevation="4dp"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonLog"
             app:layout_constraintLeft_toRightOf="@+id/buttonPow"
             app:layout_constraintRight_toLeftOf="@+id/button52" />
@@ -231,7 +231,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:elevation="4dp"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/button22"
             app:layout_constraintLeft_toRightOf="@+id/button42"
             app:layout_constraintRight_toLeftOf="@+id/buttonSin" />
@@ -245,7 +245,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:elevation="4dp"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/button42"
             app:layout_constraintLeft_toRightOf="@+id/buttonMod"
             app:layout_constraintRight_toLeftOf="@+id/button82" />
@@ -259,7 +259,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:elevation="4dp"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/button52"
             app:layout_constraintLeft_toRightOf="@+id/button72"
             app:layout_constraintRight_toLeftOf="@+id/buttonDegs" />
@@ -275,7 +275,7 @@
             android:elevation="4dp"
             android:onClick="toggleRadians"
             android:text="@string/button_degs"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonSin"
             app:layout_constraintLeft_toRightOf="@+id/button82"
             app:layout_constraintRight_toRightOf="parent" />
@@ -292,7 +292,7 @@
             android:longClickable="true"
             android:onClick="unaryOp"
             android:text="@string/button_sin"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonCos"
             app:layout_constraintLeft_toRightOf="@+id/button52"
             app:layout_constraintRight_toRightOf="parent" />
@@ -309,7 +309,7 @@
             android:longClickable="true"
             android:onClick="unaryOp"
             android:text="@string/button_cos"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonTan"
             app:layout_constraintLeft_toRightOf="@+id/button22"
             app:layout_constraintRight_toRightOf="parent" />
@@ -326,7 +326,7 @@
             android:longClickable="true"
             android:onClick="unaryOp"
             android:text="@string/button_tan"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/buttonPi"
             app:layout_constraintRight_toRightOf="parent" />
@@ -342,7 +342,7 @@
             android:elevation="4dp"
             android:onClick="binaryOp"
             android:text="@string/button_mod"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonPow"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/button72" />
@@ -358,7 +358,7 @@
             android:elevation="4dp"
             android:onClick="binaryOp"
             android:text="@string/button_pow"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonSqrt"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/button42" />
@@ -374,7 +374,7 @@
             android:elevation="4dp"
             android:onClick="unaryOp"
             android:text="@string/button_sqrt"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonSquare"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/buttonLog" />
@@ -391,7 +391,7 @@
             android:onClick="unaryOp"
             android:text="@string/button_square"
             android:textAllCaps="false"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/buttonE" />
@@ -417,7 +417,7 @@
             android:elevation="4dp"
             android:onClick="addDigit"
             android:text="@string/button_dot"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/buttonAdd"
             app:layout_constraintRight_toLeftOf="@+id/button0" />
@@ -432,7 +432,7 @@
             android:elevation="4dp"
             android:onClick="addDigit"
             android:text="@string/button_0"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/buttonDot"
             app:layout_constraintRight_toLeftOf="@+id/buttonEnter" />
@@ -448,7 +448,7 @@
             android:fadeScrollbars="false"
             android:onClick="addDigit"
             android:text="@string/button_1"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonDot"
             app:layout_constraintLeft_toRightOf="@+id/buttonSub"
             app:layout_constraintRight_toLeftOf="@+id/button2" />
@@ -463,7 +463,7 @@
             android:elevation="4dp"
             android:onClick="addDigit"
             android:text="@string/button_2"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/button0"
             app:layout_constraintLeft_toRightOf="@+id/button1"
             app:layout_constraintRight_toLeftOf="@+id/button3" />
@@ -478,7 +478,7 @@
             android:elevation="4dp"
             android:onClick="addDigit"
             android:text="@string/button_3"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonEnter"
             app:layout_constraintLeft_toRightOf="@+id/button2"
             app:layout_constraintRight_toRightOf="parent" />
@@ -493,7 +493,7 @@
             android:elevation="4dp"
             android:onClick="addDigit"
             android:text="@string/button_4"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/button1"
             app:layout_constraintLeft_toRightOf="@+id/buttonMult"
             app:layout_constraintRight_toLeftOf="@+id/button5" />
@@ -508,7 +508,7 @@
             android:elevation="4dp"
             android:onClick="addDigit"
             android:text="@string/button_5"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/button2"
             app:layout_constraintLeft_toRightOf="@+id/button4"
             app:layout_constraintRight_toLeftOf="@+id/button6" />
@@ -523,7 +523,7 @@
             android:elevation="4dp"
             android:onClick="addDigit"
             android:text="@string/button_6"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/button3"
             app:layout_constraintLeft_toRightOf="@+id/button5"
             app:layout_constraintRight_toRightOf="parent" />
@@ -538,7 +538,7 @@
             android:elevation="4dp"
             android:onClick="addDigit"
             android:text="@string/button_7"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/button4"
             app:layout_constraintLeft_toRightOf="@+id/buttonDiv"
             app:layout_constraintRight_toLeftOf="@+id/button8" />
@@ -553,7 +553,7 @@
             android:elevation="4dp"
             android:onClick="addDigit"
             android:text="@string/button_8"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/button5"
             app:layout_constraintLeft_toRightOf="@+id/button7"
             app:layout_constraintRight_toLeftOf="@+id/button9" />
@@ -568,7 +568,7 @@
             android:elevation="4dp"
             android:onClick="addDigit"
             android:text="@string/button_9"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/button6"
             app:layout_constraintLeft_toRightOf="@+id/button8"
             app:layout_constraintRight_toRightOf="parent" />
@@ -584,7 +584,7 @@
             android:elevation="4dp"
             android:onClick="binaryOp"
             android:text="@string/button_div"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonMult"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/button7" />
@@ -600,7 +600,7 @@
             android:elevation="4dp"
             android:onClick="binaryOp"
             android:text="@string/button_mult"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonSub"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/button4" />
@@ -616,7 +616,7 @@
             android:elevation="4dp"
             android:onClick="binaryOp"
             android:text="@string/button_sub"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonAdd"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/button1" />
@@ -632,7 +632,7 @@
             android:elevation="4dp"
             android:onClick="binaryOp"
             android:text="@string/button_add"
-            android:textSize="24sp"
+            android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/buttonDot" />
@@ -649,7 +649,7 @@
             android:longClickable="true"
             android:onClick="pushNum"
             android:text="@string/button_enter"
-            android:textSize="36sp"
+            android:textSize="@dimen/button_font_large"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/button0"
