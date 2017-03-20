@@ -2,6 +2,7 @@
     <string name="app_name">Calculator</string>
     <string name="button_clear">C</string>
     <string name="button_back">⌫</string>
+    <string name="button_swap">↔</string>
     <string name="button_dot">.</string>
     <string name="button_0">0</string>
     <string name="button_1">1</string>
@@ -18,5 +19,17 @@
     <string name="button_mult">*</string>
     <string name="button_sub">-</string>
     <string name="button_enter">⏎</string>
+    <string name="button_sin">sin</string>
+    <string name="button_cos">cos</string>
+    <string name="button_tan">tan</string>
+    <string name="button_log">log</string>
+    <string name="button_sqrt">√</string>
+    <string name="button_square">x²</string>
+    <string name="button_pow">^</string>
+    <string name="button_mod">%</string>
+    <string name="button_pi">π</string>
+    <string name="button_e">e</string>
+    <string name="button_rads">rad</string>
+    <string name="button_degs">deg</string>
 
 </resources>
