@@ -45,6 +45,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
         findViewById(R.id.buttonClear).setOnLongClickListener(this);
         findViewById(R.id.buttonEnter).setOnLongClickListener(this);
         findViewById(R.id.buttonSub).setOnLongClickListener(this);
+        findViewById(R.id.buttonAdd).setOnLongClickListener(this);
         findViewById(R.id.buttonMult).setOnLongClickListener(this);
         findViewById(R.id.buttonDiv).setOnLongClickListener(this);
         findViewById(R.id.buttonLog).setOnLongClickListener(this);
@@ -71,6 +72,8 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
     public boolean onLongClick(View view) {
         switch (view.getId())
         {
+            case R.id.buttonAdd:
+                sum(); break;
             case R.id.buttonSub:
                 runOp(view, 1, true); break;
             case R.id.buttonSin:
@@ -275,6 +278,16 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
             ((Button)view).setText(getResources().getString(R.string.button_rads));
             inRads = true;
         }
+    }
+
+    /**
+     * Sum all values on the stack
+     */
+    public void sum() {
+        Double sum = 0.0;
+        while (stackView.size() > 0)
+            sum += stackView.pop();
+        stackView.push(sum);
     }
 
     /**
