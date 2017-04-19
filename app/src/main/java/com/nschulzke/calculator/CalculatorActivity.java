@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class CalculatorActivity extends AppCompatActivity implements View.OnLongClickListener {
@@ -176,82 +177,79 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
         if (stackView.size() < items)
             return;
 
-        Double num1 = stackView.pop();
-        Double num2 = 1.0;
-        if (items >= 2)
-            num2 = stackView.pop();
+        ArrayList<Double> nums = new ArrayList<>();
+        for (int i = 0; i < items; i++)
+            nums.add(stackView.pop());
 
         if (!longPress)
         {
             switch (view.getId())
             {
                 case R.id.buttonAdd:
-                    stackView.push(num1 + num2); break;
+                    stackView.push(nums.get(1) + nums.get(0)); break;
                 case R.id.buttonSub:
-                    stackView.push(num1 - num2); break;
+                    stackView.push(nums.get(1) - nums.get(0)); break;
                 case R.id.buttonMult:
-                    stackView.push(num1 * num2); break;
+                    stackView.push(nums.get(1) * nums.get(0)); break;
                 case R.id.buttonDiv:
-                    stackView.push(num1 / num2); break;
+                    stackView.push(nums.get(1) / nums.get(0)); break;
                 case R.id.buttonMod:
-                    stackView.push(num1 % num2); break;
+                    stackView.push(nums.get(1) % nums.get(0)); break;
                 case R.id.buttonPow:
-                    stackView.push(Math.pow(num2, num1)); break;
+                    stackView.push(Math.pow(nums.get(1), nums.get(0))); break;
                 case R.id.buttonSqrt:
-                    stackView.push(Math.sqrt(num1)); break;
+                    stackView.push(Math.sqrt(nums.get(0))); break;
                 case R.id.buttonSquare:
-                    stackView.push(Math.pow(num1, 2)); break;
+                    stackView.push(Math.pow(nums.get(0), 2)); break;
                 case R.id.buttonSin:
                     if (!inRads)
-                        num1 = Math.toRadians(num1);
-                    stackView.push(Math.sin(num1)); break;
+                        nums.set(0, Math.toRadians(nums.get(0)));
+                    stackView.push(Math.sin(nums.get(0))); break;
                 case R.id.buttonCos:
                     if (!inRads)
-                        num1 = Math.toRadians(num1);
-                    stackView.push(Math.cos(num1)); break;
+                        nums.set(0, Math.toRadians(nums.get(0)));
+                    stackView.push(Math.cos(nums.get(0))); break;
                 case R.id.buttonTan:
                     if (!inRads)
-                        num1 = Math.toRadians(num1);
-                    stackView.push(Math.tan(num1)); break;
+                        nums.set(0, Math.toRadians(nums.get(0)));
+                    stackView.push(Math.tan(nums.get(0))); break;
                 case R.id.buttonLog:
-                    stackView.push(Math.log(num1)); break;
+                    stackView.push(Math.log(nums.get(0))); break;
             }
-        }
-        else if (longPress)
-        {
+        } else {
             switch (view.getId())
             {
                 case R.id.buttonSub:
-                    stackView.push(num1 * -1); break;
+                    stackView.push(nums.get(0) * -1); break;
                 case R.id.buttonMult:
-                    stackView.push(Math.pow(num2, num1)); break;
+                    stackView.push(Math.pow(nums.get(1), nums.get(0))); break;
                 case R.id.buttonDiv:
-                    stackView.push(num1 % num2); break;
+                    stackView.push(nums.get(1) % nums.get(0)); break;
                 case R.id.buttonLog:
-                    stackView.push(Math.log(num2) / Math.log(num1)); break;
+                    stackView.push(Math.log(nums.get(1)) / Math.log(nums.get(0))); break;
                 case R.id.buttonSin:
                     if (inRads)
-                        stackView.push(Math.asin(num1));
+                        stackView.push(Math.asin(nums.get(0)));
                     else
-                        stackView.push(Math.toDegrees(Math.asin(num1)));
+                        stackView.push(Math.toDegrees(Math.asin(nums.get(0))));
                     break;
                 case R.id.buttonCos:
                     if (inRads)
-                        stackView.push(Math.acos(num1));
+                        stackView.push(Math.acos(nums.get(0)));
                     else
-                        stackView.push(Math.toDegrees(Math.acos(num1)));
+                        stackView.push(Math.toDegrees(Math.acos(nums.get(0))));
                     break;
                 case R.id.buttonTan:
                     if (inRads)
-                        stackView.push(Math.atan(num1));
+                        stackView.push(Math.atan(nums.get(0)));
                     else
-                        stackView.push(Math.toDegrees(Math.atan(num1)));
+                        stackView.push(Math.toDegrees(Math.atan(nums.get(0))));
                     break;
                 case R.id.buttonDegs:
                     if (inRads)
-                        stackView.push(Math.toRadians(num1));
+                        stackView.push(Math.toRadians(nums.get(0)));
                     else
-                        stackView.push(Math.toDegrees(num1));
+                        stackView.push(Math.toDegrees(nums.get(0)));
             }
         }
 
@@ -292,7 +290,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
 
     /**
      * Event handler, switches to the secondary panel
-     * @param view
+     * @param view The view
      */
     public void switchPanel(final View view) {
         View panel1 = findViewById(R.id.layoutPanel1);
