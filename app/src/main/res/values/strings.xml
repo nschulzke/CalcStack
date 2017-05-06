@@ -25,7 +25,7 @@
     <string name="button_log">log</string>
     <string name="button_sqrt">√</string>
     <string name="button_square">x²</string>
-    <string name="button_pow">^</string>
+    <string name="button_pow">xⁿ</string>
     <string name="button_mod">%</string>
     <string name="button_pi">π</string>
     <string name="button_e">e</string>
