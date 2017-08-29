@@ -265,17 +265,6 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
                         stackView.push(Math.toDegrees(nums.get(0)));
             }
         }
-
-        final int delay = getResources().getInteger(R.integer.return_delay);
-        if (secondPanel)
-        {
-            handler.postDelayed(new Runnable() {
-                public void run()
-                {
-                    switchPanel();
-                }
-            }, delay);
-        }
     }
 
     /**
