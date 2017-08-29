@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Calculator</string>
+    <string name="app_name">CalcStack</string>
     <string name="button_clear">C</string>
     <string name="button_back">⌫</string>
     <string name="button_swap">⇄</string>
