@@ -290,7 +290,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:elevation="4dp"
-            android:onClick="toggleRadians"
+            android:onClick="onClick"
             android:text="@string/button_degs"
             android:textSize="@dimen/button_font_normal"
             app:layout_constraintBottom_toTopOf="@+id/buttonSin"

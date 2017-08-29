@@ -24,6 +24,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
     private boolean secondPanel = false;
     private TextView textViewLine;
     private StackView stackView;
+    private Button buttonDegs;
 
     private Handler handler = new Handler();
 
@@ -40,6 +41,8 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
 
         textViewLine = (TextView) findViewById(R.id.textViewLine);
         stackView = (StackView) findViewById(R.id.stackView);
+
+        buttonDegs = (Button) findViewById(R.id.buttonDegs);
 
         stackView.setFormatter(formatter);
 
@@ -83,6 +86,8 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
                 setLine(Math.PI); break;
             case R.id.buttonE:
                 setLine(Math.E); break;
+            case R.id.buttonDegs:
+                toggleRadians(); break;
             case R.id.buttonEnter:
                 pushNum(); break;
         }
@@ -131,25 +136,6 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
             text = digit;
 
         textViewLine.setText(text);
-    }
-
-    /**
-     * Event handler, toggle between degrees and radians
-     * @param view The view that received the event
-     */
-    public void toggleRadians(View view) {
-        view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-
-        if (inRads)
-        {
-            ((Button)view).setText(getResources().getString(R.string.button_degs));
-            inRads = false;
-        }
-        else
-        {
-            ((Button)view).setText(getResources().getString(R.string.button_rads));
-            inRads = true;
-        }
     }
 
     /**
@@ -347,6 +333,15 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
             panel2.setVisibility(View.GONE);
             secondPanel = false;
         }
+    }
+
+    /**
+     * Switch between degrees and radians
+     */
+    private void toggleRadians() {
+        inRads = !inRads;
+        int stringId = inRads ? R.string.button_rads : R.string.button_degs;
+        buttonDegs.setText(getResources().getString(stringId));
     }
 
     /**
