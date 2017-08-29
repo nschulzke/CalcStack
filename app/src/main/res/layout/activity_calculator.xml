@@ -38,7 +38,7 @@
                 android:elevation="4dp"
                 android:gravity="bottom|end"
                 android:maxLines="@integer/max_stack_lines"
-                android:onClick="swap"
+                android:onClick="onClick"
                 android:paddingEnd="8dp"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -80,6 +80,7 @@
             android:padding="0dp">
 
             <Button
+            android:hapticFeedbackEnabled="true"
                 android:id="@+id/buttonClear"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="88dp"
@@ -89,7 +90,7 @@
                 android:layout_weight="1.0"
                 android:elevation="4dp"
                 android:longClickable="false"
-                android:onClick="pop"
+                android:onClick="onClick"
                 android:text="@string/button_clear"
                 android:textSize="@dimen/button_font_normal"
                 app:layout_constraintBottom_toTopOf="@+id/buttonBack"
@@ -97,6 +98,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
+            android:hapticFeedbackEnabled="true"
                 android:id="@+id/buttonBack"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="88dp"
@@ -106,7 +108,7 @@
                 android:layout_weight="1.0"
                 android:elevation="4dp"
                 android:longClickable="false"
-                android:onClick="backspace"
+                android:onClick="onClick"
                 android:text="@string/button_back"
                 android:textSize="@dimen/button_font_normal"
                 app:layout_constraintBottom_toTopOf="@+id/buttonSwap"
@@ -114,6 +116,7 @@
                 app:layout_constraintTop_toTopOf="@+id/buttonClear" />
 
             <Button
+            android:hapticFeedbackEnabled="true"
                 android:id="@+id/buttonSwap"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="88dp"
@@ -123,7 +126,7 @@
                 android:layout_weight="1.0"
                 android:elevation="4dp"
                 android:longClickable="true"
-                android:onClick="switchPanel"
+                android:onClick="onClick"
                 android:text="@string/button_swap"
                 android:textSize="@dimen/button_font_large"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -146,6 +149,7 @@
         tools:layout_height="wrap_content">
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonE"
             android:layout_width="88dp"
             android:layout_height="76dp"
@@ -153,7 +157,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:elevation="4dp"
-            android:onClick="constant"
+            android:onClick="onClick"
             android:text="@string/button_e"
             android:textAllCaps="false"
             android:textSize="@dimen/button_font_normal"
@@ -162,6 +166,7 @@
             app:layout_constraintRight_toLeftOf="@+id/buttonPi" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonPi"
             android:layout_width="88dp"
             android:layout_height="76dp"
@@ -169,7 +174,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:elevation="4dp"
-            android:onClick="constant"
+            android:onClick="onClick"
             android:text="@string/button_pi"
             android:textAllCaps="false"
             android:textSize="@dimen/button_font_normal"
@@ -178,6 +183,7 @@
             app:layout_constraintRight_toLeftOf="@+id/buttonTan" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonLog"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -195,6 +201,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button22" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button22"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -210,6 +217,7 @@
             app:layout_constraintRight_toLeftOf="@+id/buttonCos" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button42"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -225,6 +233,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button52" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button52"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -240,6 +249,7 @@
             app:layout_constraintRight_toLeftOf="@+id/buttonSin" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button72"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -255,6 +265,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button82" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button82"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -270,6 +281,7 @@
             app:layout_constraintRight_toLeftOf="@+id/buttonDegs" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonDegs"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -286,6 +298,7 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonSin"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -303,6 +316,7 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonCos"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -320,6 +334,7 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonTan"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -337,6 +352,7 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonMod"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -353,6 +369,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button72" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonPow"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -370,6 +387,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button42" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonSqrt"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -386,6 +404,7 @@
             app:layout_constraintRight_toLeftOf="@+id/buttonLog" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonSquare"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -414,6 +433,7 @@
         tools:layout_height="wrap_content">
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonDot"
             android:layout_width="88dp"
             android:layout_height="76dp"
@@ -429,6 +449,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button0" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button0"
             android:layout_width="88dp"
             android:layout_height="76dp"
@@ -444,6 +465,7 @@
             app:layout_constraintRight_toLeftOf="@+id/buttonEnter" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button1"
             android:layout_width="88dp"
             android:layout_height="76dp"
@@ -460,6 +482,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button2" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button2"
             android:layout_width="88dp"
             android:layout_height="76dp"
@@ -475,6 +498,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button3" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button3"
             android:layout_width="88dp"
             android:layout_height="76dp"
@@ -490,6 +514,7 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button4"
             android:layout_width="88dp"
             android:layout_height="76dp"
@@ -505,6 +530,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button5" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button5"
             android:layout_width="88dp"
             android:layout_height="76dp"
@@ -520,6 +546,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button6" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button6"
             android:layout_width="88dp"
             android:layout_height="76dp"
@@ -535,6 +562,7 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button7"
             android:layout_width="88dp"
             android:layout_height="76dp"
@@ -550,6 +578,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button8" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button8"
             android:layout_width="88dp"
             android:layout_height="76dp"
@@ -565,6 +594,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button9" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/button9"
             android:layout_width="88dp"
             android:layout_height="76dp"
@@ -580,6 +610,7 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonDiv"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -596,6 +627,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button7" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonMult"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -612,6 +644,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button4" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonSub"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -628,6 +661,7 @@
             app:layout_constraintRight_toLeftOf="@+id/button1" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonAdd"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -644,6 +678,7 @@
             app:layout_constraintRight_toLeftOf="@+id/buttonDot" />
 
         <Button
+            android:hapticFeedbackEnabled="true"
             android:id="@+id/buttonEnter"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="88dp"
@@ -653,7 +688,7 @@
             android:layout_marginRight="4dp"
             android:elevation="4dp"
             android:longClickable="true"
-            android:onClick="pushNum"
+            android:onClick="onClick"
             android:text="@string/button_enter"
             android:textSize="@dimen/button_font_large"
             android:textStyle="bold"

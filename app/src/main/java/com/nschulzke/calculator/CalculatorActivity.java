@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -59,10 +60,96 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
     }
 
     /**
-     * Clears out the digits on the number entry line
+     * Handles short presses for views in this activity
+     * @param view The view that received the event
      */
-    private void clearLine() {
-        textViewLine.setText("");
+    public void onClick(View view) {
+        view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+
+        switch ( view.getId())
+        {
+            case R.id.stackView:
+                stackView.swap(); break;
+            case R.id.buttonClear:
+                if (stackView.size() > 0)
+                    stackView.pop();
+                break;
+            case R.id.buttonBack:
+                backSpace();
+                break;
+            case R.id.buttonSwap:
+                switchPanel(); break;
+            case R.id.buttonPi:
+                setLine(Math.PI); break;
+            case R.id.buttonE:
+                setLine(Math.E); break;
+            case R.id.buttonEnter:
+                pushNum(); break;
+        }
+    }
+
+    /**
+     * Event handler, run a binary operation
+     * @param view The view that received the event
+     */
+    public void binaryOp(final View view) {
+        view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+
+        runOp(view, 2, false);
+    }
+
+    /**
+     * Event handler, run a unary operation
+     * @param view The view that received the event
+     */
+    public void unaryOp(final View view) {
+        view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+
+        runOp(view, 1, false);
+    }
+
+    /**
+     * Event handler, adds a character to textViewLine
+     * @param view The view that received the event
+     */
+    public void addDigit(View view) {
+        view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+
+        Button button = (Button) view;
+        String currText = textViewLine.getText().toString();
+        String digit = button.getText().toString();
+
+        // Only allow one decimal point
+        if (digit.equals(".") && currText.contains("."))
+            return;
+        if (currText.replace(".", "").length() >= getResources().getInteger(R.integer.max_in_digits))
+            return;
+
+        // If it's already just "0", replace, otherwise append
+        CharSequence text = textViewLine.getText() + digit;
+        if (currText.equals("0") && !digit.equals("."))
+            text = digit;
+
+        textViewLine.setText(text);
+    }
+
+    /**
+     * Event handler, toggle between degrees and radians
+     * @param view The view that received the event
+     */
+    public void toggleRadians(View view) {
+        view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+
+        if (inRads)
+        {
+            ((Button)view).setText(getResources().getString(R.string.button_degs));
+            inRads = false;
+        }
+        else
+        {
+            ((Button)view).setText(getResources().getString(R.string.button_rads));
+            inRads = true;
+        }
     }
 
     /**
@@ -105,74 +192,14 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
     }
 
     /**
-     * Event handler, pops one item off the stack
-     * @param view The view that received the event
-     */
-    public void pop(View view)
-    {
-        if (stackView.size() > 0)
-            stackView.pop();
-    }
-
-    /**
-     * Event handler, swaps the top two items on the stack
-     * @param view The view that received the event
-     */
-    public void swap(View view)
-    {
-        stackView.swap();
-    }
-
-    /**
-     * Event handler, deletes the last character from textViewLine
-     * @param view The view that received the event
-     */
-    public void backspace(View view)
-    {
-        String text = textViewLine.getText().toString();
-        if (text.length() > 1)
-            textViewLine.setText(text.substring(0, text.length() - 1));
-        else
-            textViewLine.setText("");
-    }
-
-    /**
-     * Event handler, pushes the number in textViewLine to the stack
-     * @param view The view that received the event
-     */
-    public void pushNum(View view)
-    {
-        String currText = textViewLine.getText().toString();
-
-        Double currDouble;
-
-        // Empty string can't be sent
-        if (currText.equals("")) {
-            if (hasLast)
-                textViewLine.setText(formatter.format(last));
-            return;
-        }
-        else if (currText.equals("."))
-            return;
-
-        currDouble = Double.valueOf(currText);
-
-        last = currDouble;
-        hasLast = true;
-
-        stackView.push(currDouble);
-        clearLine();
-    }
-
-    /**
      * Runs an operation depending on which button is pressed
      * @param view The view that received the event
      * @param items The number of items to pop (1 or 2)
      * @param longPress True if it was a long press
      */
-    public void runOp(final View view, int items, boolean longPress) {
+    private void runOp(final View view, int items, boolean longPress) {
         if (textViewLine.getText().length() != 0 || stackView.size() < items)
-            pushNum(view);
+            pushNum();
 
         if (stackView.size() < items)
             return;
@@ -259,29 +286,43 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
             handler.postDelayed(new Runnable() {
                 public void run()
                 {
-                    switchPanel(view);
+                    switchPanel();
                 }
             }, delay);
         }
     }
 
-    public void toggleRadians(View view) {
-        if (inRads)
-        {
-            ((Button)view).setText(getResources().getString(R.string.button_degs));
-            inRads = false;
+    /**
+     * Pushes the number in textViewLine to the stack
+     */
+    private void pushNum()
+    {
+        String currText = textViewLine.getText().toString();
+
+        Double currDouble;
+
+        // Empty string can't be sent
+        if (currText.equals("")) {
+            if (hasLast)
+                setLine(last);
+            return;
         }
-        else
-        {
-            ((Button)view).setText(getResources().getString(R.string.button_rads));
-            inRads = true;
-        }
+        else if (currText.equals("."))
+            return;
+
+        currDouble = Double.valueOf(currText);
+
+        last = currDouble;
+        hasLast = true;
+
+        stackView.push(currDouble);
+        clearLine();
     }
 
     /**
      * Sum all values on the stack
      */
-    public void sum() {
+    private void sum() {
         Double sum = 0.0;
         while (stackView.size() > 0)
             sum += stackView.pop();
@@ -289,10 +330,9 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
     }
 
     /**
-     * Event handler, switches to the secondary panel
-     * @param view The view
+     * Switches to the secondary panel
      */
-    public void switchPanel(final View view) {
+    private void switchPanel() {
         View panel1 = findViewById(R.id.layoutPanel1);
         View panel2 = findViewById(R.id.layoutPanel2);
         if (!secondPanel)
@@ -310,55 +350,28 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnLong
     }
 
     /**
-     * Event handler, run a binary operation
-     * @param view The view that received the event
+     * Sets the line to the specified double.
+     * @param num The number to set the line to.
      */
-    public void binaryOp(final View view) {
-        runOp(view, 2, false);
+    private void setLine(double num) {
+        textViewLine.setText(formatter.format(num));
     }
 
     /**
-     * Event handler, run a unary operation
-     * @param view The view that received the event
+     * Clears out the digits on the number entry line
      */
-    public void unaryOp(final View view) {
-        runOp(view, 1, false);
+    private void clearLine() {
+        textViewLine.setText("");
     }
 
     /**
-     * Event handler, run a binary operation
-     * @param view The view that received the event
+     * Removes the last digit from the number entry line
      */
-    public void constant(final View view) {
-        switch (view.getId())
-        {
-            case R.id.buttonPi:
-                textViewLine.setText(formatter.format(Math.PI)); break;
-            case R.id.buttonE:
-                textViewLine.setText(formatter.format(Math.E)); break;
-        }
-    }
-
-    /**
-     * Event handler, adds a character to textViewLine
-     * @param view The view that received the event
-     */
-    @SuppressLint("SetTextI18n")
-    public void addDigit(View view) {
-        Button button = (Button) view;
-        String currText = textViewLine.getText().toString();
-        String digit = button.getText().toString();
-
-        // Only allow one decimal point
-        if (digit.equals(".") && currText.contains("."))
-            return;
-        if (currText.replace(".", "").length() >= getResources().getInteger(R.integer.max_in_digits))
-            return;
-
-        // If it's already just "0", replace, otherwise append
-        if (currText.equals("0") && !digit.equals("."))
-            textViewLine.setText(digit);
+    private void backSpace() {
+        String text = textViewLine.getText().toString();
+        if (text.length() > 1)
+            textViewLine.setText(text.substring(0, text.length() - 1));
         else
-            textViewLine.setText(textViewLine.getText() + digit);
+            textViewLine.setText("");
     }
 }
